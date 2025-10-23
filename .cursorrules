@@ -1,0 +1,75 @@
+# 프로젝트 개요
+개인 홈페이지 프로젝트 (블로그 + About Me)
+
+## 기술 스택
+- React 18 + TypeScript
+- Vite
+- FSD (Feature-Sliced Design) 아키텍처
+
+## FSD 구조 규칙
+프로젝트는 Feature-Sliced Design을 따릅니다:
+
+```
+src/
+├── app/          # 앱 초기화, 라우터, 전역 스타일, 프로바이더
+├── pages/        # 페이지 컴포넌트 (블로그, AboutMe 등)
+├── widgets/      # 큰 단위의 독립적인 UI 블록 (헤더, 푸터 등)
+├── features/     # 사용자 시나리오, 비즈니스 로직 (포스트 작성, 검색 등)
+├── entities/     # 비즈니스 엔티티 (Post, User 등)
+├── shared/       # 재사용 가능한 공통 코드 (UI 컴포넌트, utils 등)
+```
+
+### 레이어 의존성 규칙
+- 하위 레이어만 import 가능 (app → pages → widgets → features → entities → shared)
+- 같은 레이어 간 import 금지
+- shared는 어디서든 import 가능
+
+### 슬라이스 구조
+각 슬라이스 내부 구조:
+```
+slice/
+├── ui/           # React 컴포넌트
+├── model/        # 비즈니스 로직, 상태관리
+├── api/          # API 요청
+├── lib/          # 헬퍼 함수
+├── config/       # 설정
+└── index.ts      # Public API
+```
+
+## 코딩 스타일
+- 컴포넌트: PascalCase (예: `BlogPost.tsx`)
+- 훅: camelCase, use 접두사 (예: `useAuth.ts`)
+- 유틸: camelCase (예: `formatDate.ts`)
+- 상수: UPPER_SNAKE_CASE
+- 타입/인터페이스: PascalCase, I 접두사 사용 안 함
+
+## TypeScript 규칙
+- `any` 사용 금지, `unknown` 사용
+- Props는 항상 타입 정의
+- 반환 타입 명시 권장
+
+## 컴포넌트 작성 규칙
+- 함수형 컴포넌트 사용
+- 하나의 파일에 하나의 컴포넌트
+- Props destructuring 사용
+- 복잡한 로직은 커스텀 훅으로 분리
+
+## Import 순서
+1. React 관련
+2. 외부 라이브러리
+3. 내부 레이어 (app → pages → ... → shared)
+4. 타입
+5. 스타일
+
+## 커밋 메시지
+- feat: 새 기능
+- fix: 버그 수정
+- refactor: 리팩토링
+- style: 코드 포맷팅, 세미콜론 누락 등
+- docs: 문서 수정
+
+## 주의사항
+- 프로젝트는 단계별로 진행
+- 한 번에 너무 많은 파일을 생성하지 말 것
+- 사용자 확인 후 다음 단계 진행
+
