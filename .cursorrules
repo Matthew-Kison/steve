@@ -2,9 +2,14 @@
 개인 홈페이지 프로젝트 (블로그 + About Me)
 
 ## 기술 스택
-- React 18 + TypeScript
+- React 19 + TypeScript
 - Vite
 - FSD (Feature-Sliced Design) 아키텍처
+- 라우팅: TanStack Router
+- 스타일링: Tailwind CSS
+- 상태 관리: Zustand
+- API 처리: TanStack Query (React Query)
+- 폼 관리: React Hook Form
 
 ## FSD 구조 규칙
 프로젝트는 Feature-Sliced Design을 따릅니다:
@@ -37,11 +42,12 @@ slice/
 ```
 
 ## 코딩 스타일
-- 컴포넌트: PascalCase (예: `BlogPost.tsx`)
+- 컴포넌트: kebab-case (예: `blog-post.tsx`)
 - 훅: camelCase, use 접두사 (예: `useAuth.ts`)
 - 유틸: camelCase (예: `formatDate.ts`)
 - 상수: UPPER_SNAKE_CASE
-- 타입/인터페이스: PascalCase, I 접두사 사용 안 함
+- 타입: T 접두사 + PascalCase (예: `TPost`, `TUserInfo`)
+- 인터페이스: I 접두사 + PascalCase (예: `IPost`, `IUserInfo`)
 
 ## TypeScript 규칙
 - `any` 사용 금지, `unknown` 사용
@@ -54,10 +60,19 @@ slice/
 - Props destructuring 사용
 - 복잡한 로직은 커스텀 훅으로 분리
 
-## Import 순서
+## 상태 관리 & API
+- 글로벌 상태: Zustand store 사용 (shared/store 또는 entities/*/model)
+- API 호출: TanStack Query (useQuery, useMutation)
+- API 함수: entities/*/api 또는 shared/api에 정의
+
+## Import 규칙
+- **절대 경로 사용**: `@app`, `@pages`, `@widgets`, `@features`, `@entities`, `@shared`
+- 예시: `import { Button } from "@shared/ui/button"`
+
+### Import 순서
 1. React 관련
 2. 외부 라이브러리
-3. 내부 레이어 (app → pages → ... → shared)
+3. 내부 레이어 (절대 경로 사용: @app → @pages → ... → @shared)
 4. 타입
 5. 스타일
 
