@@ -1,7 +1,36 @@
 @import "tailwindcss";
 
-/* Custom styles */
+/* Custom Theme Colors */
+@theme {
+  --color-dark-bg: rgb(8, 9, 10);
+  --color-dark-surface: rgb(18, 19, 20);
+  --color-dark-border: rgb(38, 39, 40);
+}
+
+/* Pretendard Font */
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 45 920;
+  src: url("/src/shared/assets/fonts/PretendardGOVVariable.woff2") format("woff2-variations");
+}
+
+/* Base Styles */
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family:
+    "Pretendard",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    system-ui,
+    Roboto,
+    sans-serif;
+}
+
+/* Dark Mode Styles */
+.dark body {
+  background-color: var(--color-dark-bg);
+  color: rgb(235, 235, 235);
 }
