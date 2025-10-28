@@ -7,13 +7,22 @@
   --color-dark-border: rgb(38, 39, 40);
 }
 
-/* Pretendard Font */
+/* Pretendard Font - Body */
 @font-face {
   font-family: "Pretendard";
   font-style: normal;
   font-display: swap;
   font-weight: 45 920;
   src: url("/src/shared/assets/fonts/PretendardGOVVariable.woff2") format("woff2-variations");
+}
+
+/* Poppins Font - Headings */
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("/src/shared/assets/fonts/Poppins-VariableFont_wght.otf") format("opentype-variations");
 }
 
 /* Base Styles */
@@ -26,6 +35,22 @@ body {
     "Segoe UI",
     system-ui,
     Roboto,
+    sans-serif;
+}
+
+/* Headings with Poppins */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family:
+    "Poppins",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    system-ui,
     sans-serif;
 }
 
